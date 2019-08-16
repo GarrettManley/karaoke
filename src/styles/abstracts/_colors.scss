@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------------------
+
+/// Main brand color
+/// @type Color
+$brand-color: purple !default;
+
+/// Background Color
+/// @type Color
+$color-background: scale-color($brand-color, $lightness: -80%, $saturation: -50%) !default;
+
+/// Secondary Color
+/// @type Color
+$color-secondary: scale-color(complement($color-background), $lightness: 50%);
+
+$color-border: $color-secondary;
+
+/// Copy text color
+/// @type Color
+$text-color: scale-color($brand-color, $lightness: -80%) !default;
