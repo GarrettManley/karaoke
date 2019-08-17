@@ -18,4 +18,4 @@ $color-border: $color-secondary;
 
 /// Copy text color
 /// @type Color
-$text-color: scale-color($brand-color, $lightness: -80%) !default;
+$text-color: $color-secondary;

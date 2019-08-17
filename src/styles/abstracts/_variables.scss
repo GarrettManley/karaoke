@@ -17,7 +17,8 @@ sans-serif !default;
 
 /// Code (monospace) font family
 /// @type List
-$code-font-stack: 'Courier New',
+$code-font-stack: 'VT323',
+'Courier New',
 'DejaVu Sans Mono',
 'Bitstream Vera Sans Mono',
 'Monaco',
@@ -38,6 +39,8 @@ $breakpoints: ('small': 320px,
   'medium': 768px,
   'large': 1024px,
 ) !default;
+
+$header-height: 5rem;
 
 // -----------------------------------------------------------------------------
 // Imports

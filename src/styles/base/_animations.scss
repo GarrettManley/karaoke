@@ -1,0 +1,66 @@
+//-----------------------------------------------------------------------------
+// Disco
+//
+// Display a light show as a shadow behind an element.
+//-----------------------------------------------------------------------------
+
+@mixin animation-disco($disco-color) {
+  $disco-time: 2s;
+  $light-size: 0.3rem;
+
+  animation-name: disco;
+  animation-duration: $disco-time;
+  animation-iteration-count: infinite;
+
+  @keyframes disco {
+
+    0%,
+    100% {
+      box-shadow: 0 $light-size $light-size $disco-color;
+    }
+
+    15% {
+      box-shadow: ($light-size/2) ($light-size/2) $light-size $disco-color;
+    }
+
+    30% {
+      box-shadow: $light-size 0 $light-size $disco-color;
+    }
+
+    45% {
+      box-shadow: ($light-size/2) (-($light-size/2)) $light-size $disco-color;
+    }
+
+    60% {
+      box-shadow: 0 (-($light-size)) $light-size $disco-color;
+    }
+
+    75% {
+      box-shadow: (-($light-size/2)) (-($light-size/2)) $light-size $disco-color;
+    }
+
+    85% {
+      box-shadow: (-($light-size)) 0 $light-size $disco-color;
+    }
+
+    90% {
+      box-shadow: (-($light-size/2)) ($light-size/2) $light-size $disco-color;
+    }
+  }
+}
+
+
+//-----------------------------------------------------------------------------
+// Blink
+//-----------------------------------------------------------------------------
+
+@mixin animation-blink {
+  animation: blink 1s steps(2, start) infinite;
+
+  @keyframes blink {
+
+    to {
+      visibility: hidden;
+    }
+  }
+}

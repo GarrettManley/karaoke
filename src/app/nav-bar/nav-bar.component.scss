@@ -1,0 +1,15 @@
+@import '../../styles/main.scss';
+
+nav {
+  height: $header-height;
+  display: flex;
+  align-items: center;
+
+  h1 {
+
+    &::after {
+      content: '|';
+      @include animation-blink;
+    }
+  }
+}

@@ -29,10 +29,9 @@ html {
 a {
   color: $color-secondary;
   text-decoration: none;
-  cursor: pointer;
 
   @include on-event {
-    color: $text-color;
     text-decoration: underline;
+    cursor: pointer;
   }
 }
