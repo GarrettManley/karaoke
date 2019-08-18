@@ -11,5 +11,11 @@ nav {
       content: '|';
       @include animation-blink;
     }
+
+    span {
+      font-size: 2rem;
+      color: $color-error;
+      overflow: hidden;
+    }
   }
 }

@@ -19,3 +19,5 @@ $color-border: $color-secondary;
 /// Copy text color
 /// @type Color
 $text-color: $color-secondary;
+
+$color-error: adjust-hue($color-secondary, 220);
