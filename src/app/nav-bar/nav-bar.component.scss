@@ -1,0 +1,33 @@
+@import '../../styles/main.scss';
+
+nav {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  font-family: $code-font-stack;
+
+  .terminal {
+    font-size: 1.5rem;
+
+    &::after {
+      content: '|';
+      @include animation-blink;
+    }
+
+    span {
+      font-size: 1.25rem;
+
+      &.error {
+        color: $color-error;
+      }
+
+      &.warning {
+        color: $color-warning;
+      }
+
+      &.info {
+        color: $text-color;
+      }
+    }
+  }
+}

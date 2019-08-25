@@ -1,0 +1,7 @@
+.card {
+  padding: 2rem;
+  border: 1px solid $color-border;
+  border-radius: 2rem;
+  overflow: hidden;
+  @include animation-disco($brand-color);
+}
