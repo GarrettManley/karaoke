@@ -1,0 +1,16 @@
+@import '../../styles/main.scss';
+
+button {
+  font-family: $disco-font-stack;
+  font-weight: 400;
+  color: $text-color;
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+
+  @include on-event {
+    cursor: pointer;
+    @include animation-disco($brand-color);
+  }
+}

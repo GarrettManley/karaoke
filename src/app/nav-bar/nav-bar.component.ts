@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorService } from '../core/error.service';
+import { ErrorService, ErrorMessageType } from '../core/error.service';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -9,12 +9,17 @@ import { Subject } from 'rxjs';
 })
 export class NavBarComponent implements OnInit {
   error$: Subject<string> = new Subject<string>();
+  errorType$: Subject<ErrorMessageType> = new Subject<ErrorMessageType>();
 
   constructor(private errorMessageService: ErrorService) {}
 
   ngOnInit() {
-    this.errorMessageService.errorMessage$.subscribe(next => {
-      this.error$.next(next);
+    this.errorMessageService.errorMessage$.subscribe(message => {
+      this.error$.next(message);
+    });
+
+    this.errorMessageService.errorType$.subscribe(type => {
+      this.errorType$.next(type);
     });
   }
 }

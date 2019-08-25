@@ -3,30 +3,28 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
+type Reference = firebase.database.Reference;
+type App = firebase.app.App;
+
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
   projectID = 'garrettmanley-website';
+
   firebaseConfig = {
-    apiKey: 'AIzaSyA5TeFeWR-KT_Y2KUggM0ECiMErzjz4HuM',
     authDomain: this.projectID + '.firebaseapp.com',
     databaseURL: 'https://' + this.projectID + '.firebaseio.com',
     projectId: this.projectID,
   };
 
-  app = firebase.initializeApp(this.firebaseConfig);
+  private app: App;
 
   constructor() {
-    this.getSongs();
+    this.app = firebase.initializeApp(this.firebaseConfig);
   }
 
-  public getSongs() {
-    this.app
-      .database()
-      .ref('karaoke/songs')
-      .on('child_changed', data => {
-        console.log(data.val());
-      });
+  database(ref: string): Reference {
+    return this.app.database().ref(ref);
   }
 }

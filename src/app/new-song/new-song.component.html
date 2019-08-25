@@ -1,20 +1,16 @@
 <div class="container">
-
   <div class="card">
-
     <div class="inputs">
-
       <div class="input">
         <h2 class="input-label">Your Name</h2>
-        <input type="text">
+        <input #singer type="text" [formControl]="singerControl" />
       </div>
 
       <div class="input">
         <h2 class="input-label">YouTube Link</h2>
-        <input type="text">
+        <input type="text" [formControl]="songControl" />
       </div>
     </div>
-    <a class="submit"
-       (click)="addNewSongClicked()">Submit New Song</a>
+    <karaoke-button class="submit" [title]="'Submit New Song'" (click)="addNewSongClicked()"></karaoke-button>
   </div>
 </div>
