@@ -8,9 +8,10 @@ import { NewSongComponent } from './new-song/new-song.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
+import { SongListComponent } from './song-list/song-list.component';
 
 @NgModule({
-  declarations: [AppComponent, NewSongComponent, NavBarComponent, ButtonComponent],
+  declarations: [AppComponent, NewSongComponent, NavBarComponent, ButtonComponent, SongListComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, CommonModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

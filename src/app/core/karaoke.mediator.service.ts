@@ -15,6 +15,7 @@ export class KaraokeMediator {
 
   constructor(private firebase: FirebaseService, private error: ErrorService) {
     console.log('/-------------------------\\\n Starting Karaoke Fun Time \n\\-------------------------/');
+    this.fetchSongs();
     this.subscribeToSongs();
   }
 
@@ -26,15 +27,30 @@ export class KaraokeMediator {
     });
   }
 
+  public fetchSongs() {
+    this.firebase.database(this.songRef).once(
+      'value',
+      data => {
+        try {
+          if (data.val()) {
+            this.songs$.next(Object.values(data.val()));
+          }
+        } catch (error) {
+          this.error.setErrorMessage(error.message);
+        }
+      },
+      error => {
+        this.error.setErrorMessage(error.message);
+      }
+    );
+  }
+
   private subscribeToSongs() {
     this.firebase.database(this.songRef).on('value', data => {
       try {
         this.songs$.next(Object.values(data.val()));
-        console.log(Object.values(data.val()));
-        this.error.setErrorMessage('Get ready to SING!', ErrorMessageType.info);
       } catch {
-        // tslint:disable-next-line: quotemark
-        this.error.setErrorMessage('Enter a song...', ErrorMessageType.error);
+        this.error.setErrorMessage('Error fetching newly added song', ErrorMessageType.error);
       }
     });
   }
