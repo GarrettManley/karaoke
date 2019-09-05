@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { ISong } from './models/song.interface';
+import { ErrorMessageType, ErrorService } from './error.service';
 import { FirebaseService } from './firebase.service';
-import { ErrorService, ErrorMessageType } from './error.service';
+import { ISong } from './models/song.interface';
 import { YoutubeService } from './youtube.service';
 
 @Injectable({
@@ -14,18 +15,30 @@ export class KaraokeMediator {
   karaokeRef = 'karaoke';
   songRef = this.karaokeRef + '/songs';
 
-  constructor(private firebase: FirebaseService, private error: ErrorService, private youtube: YoutubeService) {
+  constructor(
+    private firebase: FirebaseService,
+    private error: ErrorService,
+    private youtube: YoutubeService,
+    private router: Router
+  ) {
     console.log('/-------------------------\\\n Starting Karaoke Fun Time \n\\-------------------------/');
     this.fetchSongs();
     this.subscribeToSongs();
   }
 
   public async addSong(song: ISong) {
-    song.video = await this.youtube.getVideo(song.songLink);
+    try {
+      song.video = await this.youtube.getVideo(song.songLink);
+    } catch (error) {
+      this.error.setErrorMessage(error.message);
+      return;
+    }
 
     this.firebase.database(this.songRef).push(song, error => {
       if (error) {
         this.error.setErrorMessage(error.message);
+      } else {
+        this.router.navigate(['/song-list']);
       }
     });
   }

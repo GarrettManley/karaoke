@@ -13,10 +13,19 @@ export class YoutubeService {
   constructor(private http: HttpClientService) {}
 
   public async getVideo(url: string): Promise<youtube_v3.Schema$VideoSnippet> {
-    const id = this.getIdFromUrl(url);
+    let id = '';
+    try {
+      id = this.getIdFromUrl(url);
+    } catch (error) {
+      throw error;
+    }
 
     return await this.http.get(this.apiUrl + `videos?part=snippet&id=${id}` + this.keyParam).then((resp: any) => {
-      return resp.items[0].snippet;
+      if (resp.items[0]) {
+        return resp.items[0].snippet;
+      } else {
+        throw new Error('Unable to parse video ID from provided URL');
+      }
     });
   }
 
@@ -28,6 +37,8 @@ export class YoutubeService {
     if (id.substr(0, 3) === '?v=') {
       id = id.substr(3);
     }
+
+    // TODO:: Additional parsing on id values to ensure more validity before passing to the YouTube API
 
     return id;
   }
