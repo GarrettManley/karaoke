@@ -1,8 +1,17 @@
 .song {
   display: flex;
   align-items: center;
+  margin: 1rem 0;
 
   .info {
     margin-left: 1rem;
+
+    &-line {
+      margin: 1rem 0;
+
+      h3 {
+        margin: 0;
+      }
+    }
   }
 }

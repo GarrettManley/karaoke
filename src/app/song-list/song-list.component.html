@@ -2,10 +2,18 @@
   <h2>Up Next</h2>
   <div *ngFor="let song of songs$ | async">
     <div class="song card">
-      <img [src]="song.video.thumbnails.default.url" />
+      <img [src]="song.video.thumbnails.medium.url" />
       <div class="info">
-        <div>Singer: {{ song.singer }}</div>
-        <div>Song: {{ song.video.title }}</div>
+        <div class="info-line">
+          <h3>Singer:</h3>
+          {{ song.singer }}
+        </div>
+        <div class="info-line">
+          <h3>
+            Song:
+          </h3>
+          {{ song.video.title }}
+        </div>
       </div>
     </div>
   </div>
