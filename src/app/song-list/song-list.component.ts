@@ -15,5 +15,9 @@ export class SongListComponent implements OnInit {
 
   ngOnInit() {
     this.songs$ = this.karaoke.songs$;
+
+    this.songs$.toPromise().then(value => {
+      console.log(value);
+    });
   }
 }

@@ -1,6 +1,10 @@
 <div class="container">
-  <h2>Songs</h2>
+  <h2>Up Next</h2>
   <div *ngFor="let song of songs$ | async">
-    <div>{{ song.singer }}</div>
+    <div class="song">
+      <img [src]="song.video.thumbnails.default.url" />
+      <div>Singer: {{ song.singer }}</div>
+      <div>Song: {{ song.video.title }}</div>
+    </div>
   </div>
 </div>

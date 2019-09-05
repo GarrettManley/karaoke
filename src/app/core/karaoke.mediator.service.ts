@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { ISong } from './models/song.interface';
 import { FirebaseService } from './firebase.service';
 import { ErrorService, ErrorMessageType } from './error.service';
+import { YoutubeService } from './youtube.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +14,24 @@ export class KaraokeMediator {
   karaokeRef = 'karaoke';
   songRef = this.karaokeRef + '/songs';
 
-  constructor(private firebase: FirebaseService, private error: ErrorService) {
+  constructor(private firebase: FirebaseService, private error: ErrorService, private youtube: YoutubeService) {
     console.log('/-------------------------\\\n Starting Karaoke Fun Time \n\\-------------------------/');
     this.fetchSongs();
     this.subscribeToSongs();
   }
 
-  public addSong(song: ISong) {
+  public async addSong(song: ISong) {
+    song.video = await this.youtube.getVideo(song.songLink);
+
     this.firebase.database(this.songRef).push(song, error => {
       if (error) {
         this.error.setErrorMessage(error.message);
       }
     });
+  }
+
+  public async getSongTitle(song: ISong): Promise<string> {
+    return await this.youtube.getVideoTitleFromUrl(song.songLink);
   }
 
   public fetchSongs() {
