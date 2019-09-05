@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
 import { KaraokeMediator } from '../core/karaoke.mediator.service';
 import { ISong } from '../core/models/song.interface';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'karaoke-song-list',
@@ -9,11 +9,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./song-list.component.scss'],
 })
 export class SongListComponent implements OnInit {
-  songs$: Observable<ISong[]>;
+  songs$: ReplaySubject<ISong[]> = new ReplaySubject<ISong[]>();
 
-  constructor(private karaoke: KaraokeMediator) {}
+  constructor(private karaoke: KaraokeMediator, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.songs$ = this.karaoke.songs$;
+    console.log('Song list initialized');
+    this.karaoke.songs$.subscribe(data => {
+      this.songs$.next(data);
+    });
   }
 }

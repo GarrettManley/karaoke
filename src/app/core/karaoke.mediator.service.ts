@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { ErrorMessageType, ErrorService } from './error.service';
 import { FirebaseService } from './firebase.service';
 import { ISong } from './models/song.interface';
@@ -10,7 +10,7 @@ import { YoutubeService } from './youtube.service';
   providedIn: 'root',
 })
 export class KaraokeMediator {
-  songs$: Subject<ISong[]> = new Subject<ISong[]>();
+  songs$: ReplaySubject<ISong[]> = new ReplaySubject<ISong[]>();
 
   karaokeRef = 'karaoke';
   songRef = this.karaokeRef + '/songs';
@@ -43,8 +43,8 @@ export class KaraokeMediator {
     });
   }
 
-  public fetchSongs() {
-    this.firebase.database(this.songRef).once(
+  public async fetchSongs() {
+    await this.firebase.database(this.songRef).once(
       'value',
       data => {
         try {
