@@ -12,23 +12,12 @@ export class YoutubeService {
 
   constructor(private http: HttpClientService) {}
 
-  public async getVideoTitle(id: string): Promise<string> {
-    return await this.http.get(this.apiUrl + `videos?part=snippet&id=${id}` + this.keyParam).then((resp: any) => {
-      const title = resp.items[0].snippet.title;
-      return title;
-    });
-  }
-
   public async getVideo(url: string): Promise<youtube_v3.Schema$VideoSnippet> {
     const id = this.getIdFromUrl(url);
 
     return await this.http.get(this.apiUrl + `videos?part=snippet&id=${id}` + this.keyParam).then((resp: any) => {
       return resp.items[0].snippet;
     });
-  }
-
-  public async getVideoTitleFromUrl(url: string): Promise<string> {
-    return await this.getVideoTitle(this.getIdFromUrl(url));
   }
 
   public getIdFromUrl(url: string): string {

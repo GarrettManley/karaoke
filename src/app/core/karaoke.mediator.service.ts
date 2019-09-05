@@ -30,10 +30,6 @@ export class KaraokeMediator {
     });
   }
 
-  public async getSongTitle(song: ISong): Promise<string> {
-    return await this.youtube.getVideoTitleFromUrl(song.songLink);
-  }
-
   public fetchSongs() {
     this.firebase.database(this.songRef).once(
       'value',

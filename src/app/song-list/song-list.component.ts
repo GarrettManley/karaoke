@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KaraokeMediator } from '../core/karaoke.mediator.service';
 import { ISong } from '../core/models/song.interface';
 import { Observable } from 'rxjs';
@@ -15,9 +15,5 @@ export class SongListComponent implements OnInit {
 
   ngOnInit() {
     this.songs$ = this.karaoke.songs$;
-
-    this.songs$.toPromise().then(value => {
-      console.log(value);
-    });
   }
 }
