@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { KaraokeMediator } from '../core/karaoke.mediator.service';
-import { Song } from '../core/models/song';
 import { FormControl } from '@angular/forms';
 import { ErrorService, ErrorMessageType } from '../core/error.service';
+import { Song } from '../core/models/song';
 
 @Component({
   selector: 'karaoke-new-song',

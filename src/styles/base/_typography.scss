@@ -5,3 +5,14 @@ body {
   color: $text-color;
   font: normal 125% / 1.4 $text-font-stack;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-disco {
+  font-family: $disco-font-stack;
+  font-weight: 400;
+}

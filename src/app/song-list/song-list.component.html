@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="current-song" *ngIf="currentSong?.embedLink as link">
+    <iframe [src]="link | safe" frameborder="0" allow="encrypted-media;" allowfullscreen></iframe>
+    <karaoke-button [title]="'Mark Song Played'" (click)="clickSongPlayed()"></karaoke-button>
+  </div>
+  <h2>Up Next</h2>
+  <div *ngFor="let song of songs$ | async">
+    <div class="song card">
+      <img [src]="song.video.thumbnails.medium.url" />
+      <div class="info">
+        <div class="info-line">
+          <h3>Singer:</h3>
+          {{ song.singer }}
+        </div>
+        <div class="info-line">
+          <h3>Song:</h3>
+          {{ song.video.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
