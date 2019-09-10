@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="current-song" *ngIf="currentSongEmbedLink$ | async as song">
-    <iframe [src]="song | safe" frameborder="0" allow="encrypted-media;" allowfullscreen></iframe>
+  <div class="current-song" *ngIf="currentSong?.embedLink as link">
+    <iframe [src]="link | safe" frameborder="0" allow="encrypted-media;" allowfullscreen></iframe>
+    <karaoke-button [title]="'Mark Song Played'" (click)="clickSongPlayed()"></karaoke-button>
   </div>
   <h2>Up Next</h2>
   <div *ngFor="let song of songs$ | async">

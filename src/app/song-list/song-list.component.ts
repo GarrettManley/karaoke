@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { KaraokeMediator } from '../core/karaoke.mediator.service';
 import { ISong } from '../core/models/song.interface';
 
@@ -10,8 +10,7 @@ import { ISong } from '../core/models/song.interface';
 })
 export class SongListComponent implements OnInit {
   songs$: ReplaySubject<ISong[]> = new ReplaySubject<ISong[]>();
-  currentSong$: Subject<ISong> = new Subject<ISong>();
-  currentSongEmbedLink$: Subject<string> = new Subject<string>();
+  currentSong: ISong;
 
   constructor(private karaoke: KaraokeMediator, private cd: ChangeDetectorRef) {}
 
@@ -21,11 +20,11 @@ export class SongListComponent implements OnInit {
     });
 
     this.songs$.subscribe(songs => {
-      this.currentSong$.next(songs[0]);
+      this.currentSong = songs[0];
     });
+  }
 
-    this.currentSong$.subscribe(song => {
-      this.currentSongEmbedLink$.next(song.embedLink);
-    });
+  clickSongPlayed() {
+    console.log('clicked!');
   }
 }
