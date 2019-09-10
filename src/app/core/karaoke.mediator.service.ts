@@ -29,6 +29,7 @@ export class KaraokeMediator {
   public async addSong(song: ISong) {
     try {
       song.video = await this.youtube.getVideo(song.songLink);
+      song.embedLink = this.youtube.getEmbedFromUrl(song.songLink);
     } catch (error) {
       this.error.setErrorMessage(error.message);
       return;

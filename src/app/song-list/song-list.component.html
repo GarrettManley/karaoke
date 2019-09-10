@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="current-song" *ngIf="currentSongEmbedLink$ | async as song">
+    <iframe [src]="song | safe" frameborder="0" allow="encrypted-media;" allowfullscreen></iframe>
+  </div>
   <h2>Up Next</h2>
   <div *ngFor="let song of songs$ | async">
     <div class="song card">

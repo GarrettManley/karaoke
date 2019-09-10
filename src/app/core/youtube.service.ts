@@ -42,4 +42,8 @@ export class YoutubeService {
 
     return id;
   }
+
+  public getEmbedFromUrl(url: string): string {
+    return `https://www.youtube.com/embed/${this.getIdFromUrl(url)}`;
+  }
 }
