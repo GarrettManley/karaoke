@@ -8,6 +8,5 @@ export interface ISong {
   status: {
     completed: boolean;
   };
-
-  markAsSkipped(): void;
+  key: string;
 }

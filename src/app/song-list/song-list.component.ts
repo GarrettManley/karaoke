@@ -25,6 +25,6 @@ export class SongListComponent implements OnInit {
   }
 
   clickSongPlayed() {
-    console.log('clicked!');
+    this.karaoke.markSongPlayed(this.currentSong);
   }
 }

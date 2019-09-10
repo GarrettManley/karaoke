@@ -7,11 +7,10 @@ export class Song implements ISong {
   singer = '';
   songLink = 'https://www.youtube.com';
   status = { completed: false };
+  key: string;
 
   constructor(name: string, link: string) {
     this.singer = name;
     this.songLink = link;
   }
-
-  public markAsSkipped() {}
 }
