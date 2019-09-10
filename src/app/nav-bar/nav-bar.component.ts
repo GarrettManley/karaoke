@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorService, ErrorMessageType } from '../core/error.service';
+import { ErrorService, ErrorMessageType } from '../core/services/error.service';
 import { Subject } from 'rxjs';
 
 @Component({

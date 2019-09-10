@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import { ErrorMessageType, ErrorService } from './error.service';
 import { FirebaseService } from './firebase.service';
-import { ISong } from './models/song.interface';
+import { ISong } from '../models/song.interface';
 import { YoutubeService } from './youtube.service';
 
 @Injectable({
