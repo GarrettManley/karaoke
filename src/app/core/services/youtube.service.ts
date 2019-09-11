@@ -7,7 +7,7 @@ import { youtube_v3 } from 'googleapis';
 })
 export class YoutubeService {
   apiUrl = 'https://www.googleapis.com/youtube/v3/';
-  key: string = require('../../../api-keys.json').youtube.serverKey;
+  key: string = require('../../../../api-keys.json').youtube.serverKey;
   keyParam = `&key=${this.key}`;
 
   constructor(private http: HttpClientService) {}

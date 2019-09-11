@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { KaraokeMediator } from '../core/karaoke.mediator.service';
+import { KaraokeMediator } from '../core/services/karaoke.mediator.service';
 import { FormControl } from '@angular/forms';
-import { ErrorService, ErrorMessageType } from '../core/error.service';
+import { ErrorService, ErrorMessageType } from '../core/services/error.service';
 import { Song } from '../core/models/song';
 
 @Component({

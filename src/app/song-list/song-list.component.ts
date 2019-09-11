@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { KaraokeMediator } from '../core/karaoke.mediator.service';
+import { KaraokeMediator } from '../core/services/karaoke.mediator.service';
 import { ISong } from '../core/models/song.interface';
 
 @Component({
